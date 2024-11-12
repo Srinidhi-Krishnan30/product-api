@@ -14,6 +14,12 @@ app.use(express.json());
 app.get("/products",(req,res)=>{                
     res.json(products);
 })
+// Getting the information in sorted order by Price
+app.get("/products-sort",(req,res)=>{
+    let sortVal = [...products];
+    sortVal.sort((a,b)=>(a.price - b.price));
+    res.json(sortVal);
+})
 
  // Extracting information based on id
 app.get("/products/:id",(req,res)=>{            
@@ -69,6 +75,7 @@ app.delete("/products/:id",(req,res)=>{
   products.splice(productIndex, 1);
   res.status(204).json({message: "User Removed"});
 })
+
 
 
 // Starting server at given port
