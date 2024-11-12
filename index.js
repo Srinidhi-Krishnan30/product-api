@@ -25,39 +25,50 @@ app.get("/products/:id",(req,res)=>{
 
 // Add new product details
 app.post("/products",(req,res)=>{   
-    const name = req.body.name || req.body.Name;
-    const description = req.body.description || req.body.Desc;
-    const price = req.body.price || req.body.Age; 
-    const quantity = req.body.quantity || req.body.Quantity || 0; 
+    const name =req.body.Name;
+    const description = req.body.Desc;
+    const price = req.body.Price; 
+    const quantity =req.body.Quantity || 0; 
 
-  // Check if required fields are present
-  if (!name || price == null) {
+    if (!name || price == null) {                           // fields check
     return res.status(400).json({ error: 'Name and price are required' });
-  }
+    }
 
-  // Create a new product with a unique ID
-  const newProduct = { id: ++index, name, description, price, quantity };
-  products.push(newProduct);
-
-  // Send the new product in the response with a 201 Created status
-  res.status(201).json(newProduct);
+    const newProduct = { id: ++index, name, description, price, quantity };
+    products.push(newProduct);
+    res.status(201).json(newProduct);
 
 })
 
 // Updates the information of a product based on ID
-app.put("/products/:id",(req,res)=>{            
-    res.json({
-        message: "Put method implemented"
-    })
-})
+app.put("/products/:id", (req, res) => {            
+    const productIndex = products.findIndex(p => p.id === parseInt(req.params.id)); // Use findIndex to get the index of the product
+    if (productIndex === -1) { // Check if product is found using index
+        return res.status(404).json({ error: 'Product not found' });
+    }
+
+    const { Name, Desc, Price, Quantity } = req.body;
+    const product = products[productIndex];
+
+    // Update the product with new values if they are provided
+    if (Name) product.name = Name;               
+    if (Desc) product.description = Desc;        
+    if (Price != null) product.price = Price;    
+    if (Quantity != null) product.quantity = Quantity; 
+    res.json(product);  
+});
+
 
 // Deletes information of a given product based on id
 app.delete("/products/:id",(req,res)=>{
-    res.json({
-        message : "Delete method implemented"
-    })
-})
+    const productIndex = products.findIndex(p => p.id === parseInt(req.params.id));
+  if (productIndex === -1) {
+    return res.status(404).json({ error: 'Product not found' });
+  }
 
+  products.splice(productIndex, 1);
+  res.status(204).json({message: "User Removed"});
+})
 
 
 // Starting server at given port
