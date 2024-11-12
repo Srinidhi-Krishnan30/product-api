@@ -4,32 +4,44 @@ const express = require("express");
 app = express();
 
 // DataBase
+products = [];
+index = 1;
 
 // Middleware
 app.use(express.json());
 
 // Retrieving all user information  
 app.get("/products",(req,res)=>{                
-    res.json({
-        message: "Data retrieved"
-    })
+    res.json(products);
 })
 
  // Extracting information based on id
 app.get("/products/:id",(req,res)=>{            
-    res.json({
-        message: req.params.id
-    })
+    const searchProd = products.find(val => val.id == req.params.id);
+    if(!searchProd){res.status(404).json({message: "User not found"});}
+    res.json(searchProd);
+
 })
 
 // Add new product details
-app.post("/products",(req,res)=>{               
-    res.json({
-        Name: "ABC",
-        "Description": "Hello",
-        "Price" : 10,
-        "Quantity": 10,
-    })
+app.post("/products",(req,res)=>{   
+    const name = req.body.name || req.body.Name;
+    const description = req.body.description || req.body.Desc;
+    const price = req.body.price || req.body.Age; 
+    const quantity = req.body.quantity || req.body.Quantity || 0; 
+
+  // Check if required fields are present
+  if (!name || price == null) {
+    return res.status(400).json({ error: 'Name and price are required' });
+  }
+
+  // Create a new product with a unique ID
+  const newProduct = { id: ++index, name, description, price, quantity };
+  products.push(newProduct);
+
+  // Send the new product in the response with a 201 Created status
+  res.status(201).json(newProduct);
+
 })
 
 // Updates the information of a product based on ID
@@ -53,28 +65,3 @@ app.listen(3000,console.log("Server Started...."));
 
 
 
-/*products = [
-    {
-        "Name" : "Srinidhi",
-        "Age"  : 20,
-        "Desc" : "This is a good",
-    },
-    {
-        "Name" : "Jhu",
-        "Age"  : 21,
-        "Desc" : "He is a boy",
-    },
-    {
-        "Name" : "Rogu",
-        "Age"  : 20,
-        "Desc" : "This is a good"
-    },
-    {
-        "Name" : "Abrar",
-        "Age"  : 19,
-        "Desc" : "He is a girl"
-    }
-];
-
-product = products.find(p=>p.Age == 21);
-console.log(product);*/
