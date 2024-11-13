@@ -35,19 +35,22 @@ The server will start on http://localhost:3000.
 | GET    | `/products-sort?sortBy=price` | Sort products by price |
 
 
-### Testing with Postman
+## Testing with Postman
 
-#### GET /products
+### GET /products
 ![Get Screenshot](postmanWindow/get.png)
-This command retrieves all the products available in the database
+##### This command retrieves all the products available in the database
 
-#### GET/products/id
-This command retrieves a particular product based on id
+### GET/products/id
+![Get Screenshot](postmanWindow/get_id.png)
+#####This command retrieves a particular product based on id
 
-#### POST/products
+### POST/products
 ![Post screenshot](postmanWindow/post.png)
-This command adds a new product to the database
+##### This command adds a new product to the database
+
 Sample Body Format:
+```json
     {
     "Name": "Example Product",
     "Desc": "Example Description",
@@ -55,10 +58,11 @@ Sample Body Format:
     "Quantity": 10
 }
 
-##### PUT /products/id
-Modify the product details in place after matching based on id given in request
-// image
+### PUT /products/id
+![](postmanWindow/put.png)
+##### Modify the product details in place after matching based on id given in request
 
+```json
 Sample body format
 {
     "Name": "Updated Product Name",
@@ -67,13 +71,14 @@ Sample body format
     "Quantity": 5
 }
 
-##### DELETE /products/
-Removes product information based on id given in request
+### DELETE /products/
+![](postmanWindow/delete.png)
+#### Removes product information based on id given in request
 
-//image
 
-##### GET /products-sort
-Sorts all the elements in the database by price and returns the sorted array
+### GET /products-sort
+![](postmanWindow/sort.png)
+##### Sorts all the elements in the database by price and returns the sorted array
 
 
 
