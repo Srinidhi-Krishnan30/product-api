@@ -49,27 +49,11 @@ The server will start on http://localhost:3000.
 ![Post screenshot](postmanWindow/post.png)
 
 
-Sample Body Format:
-```json
-    {
-    "Name": "Example Product",
-    "Desc": "Example Description",
-    "Price": 100,
-    "Quantity": 10
-}
 ##### This command adds a new product to the database
 ### PUT /products/id
 ![](postmanWindow/put.png)
 ##### Modify the product details in place after matching based on id given in request
 
-Sample body format
-```json
-{
-    "Name": "Updated Product Name",
-    "Desc": "Updated Product Description",
-    "Price": 120,
-    "Quantity": 5
-}
 
 ### DELETE /products/
 ![](postmanWindow/delete.png)
@@ -79,6 +63,10 @@ Sample body format
 ### GET /products-sort
 ![](postmanWindow/sort.png)
 ##### Sorts all the elements in the database by price and returns the sorted array
+
+
+
+
 
 
 
