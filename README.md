@@ -41,6 +41,9 @@ The server will start on http://localhost:3000.
 ![Get Screenshot](postmanWindow\get.png)
 This command retrieves all the products available in the database
 
+#### GET/products/id
+This command retrieves a particular product based on id
+
 #### POST/products
 ![Post screenshot](postmanWindow\post.png)
 This command adds a new product to the database
@@ -51,6 +54,28 @@ Sample Body Format:
     "Price": 100,
     "Quantity": 10
 }
+
+##### PUT /products/id
+Modify the product details in place after matching based on id given in request
+// image
+
+Sample body format
+{
+    "Name": "Updated Product Name",
+    "Desc": "Updated Product Description",
+    "Price": 120,
+    "Quantity": 5
+}
+
+##### DELETE /products/
+Removes product information based on id given in request
+
+//image
+
+##### GET /products-sort
+Sorts all the elements in the database by price and returns the sorted array
+
+
 
 
 
