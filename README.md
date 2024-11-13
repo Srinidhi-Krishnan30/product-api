@@ -32,7 +32,7 @@ The server will start on http://localhost:3000.
 | POST   | `/products`                | Create a new product                      |
 | PUT    | `/products/:id`            | Update an existing product by ID          |
 | DELETE | `/products/:id`            | Delete a product by ID                    |
-| GET    | `/products-sort?sortBy=price` | Sort products by price |
+| GET    | `/products-sort` | Sort products by price |
 
 
 ## Testing with Postman
@@ -43,11 +43,11 @@ The server will start on http://localhost:3000.
 
 ### GET/products/id
 ![Get Screenshot](postmanWindow/get_id.png)
-#####This command retrieves a particular product based on id
+##### This command retrieves a particular product based on id
 
 ### POST/products
 ![Post screenshot](postmanWindow/post.png)
-##### This command adds a new product to the database
+
 
 Sample Body Format:
 ```json
@@ -57,13 +57,13 @@ Sample Body Format:
     "Price": 100,
     "Quantity": 10
 }
-
+##### This command adds a new product to the database
 ### PUT /products/id
 ![](postmanWindow/put.png)
 ##### Modify the product details in place after matching based on id given in request
 
-```json
 Sample body format
+```json
 {
     "Name": "Updated Product Name",
     "Desc": "Updated Product Description",
