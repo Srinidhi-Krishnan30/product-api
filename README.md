@@ -25,8 +25,6 @@ The server will start on http://localhost:3000.
 
 ### API Endpoints
 
-## API Endpoints
-
 | Method | Endpoint                   | Description                               |
 |--------|-----------------------------|-------------------------------------------|
 | GET    | `/products`                | Retrieve all products                     |
@@ -38,6 +36,22 @@ The server will start on http://localhost:3000.
 
 
 ### Testing with Postman
+
+#### GET /products
+![Get Screenshot](postmanWindow\get.png)
+This command retrieves all the products available in the database
+
+#### POST/products
+![Post screenshot](postmanWindow\post.png)
+This command adds a new product to the database
+Sample Body Format:
+    {
+    "Name": "Example Product",
+    "Desc": "Example Description",
+    "Price": 100,
+    "Quantity": 10
+}
+
 
 
 
